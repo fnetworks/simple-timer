@@ -77,7 +77,11 @@ public class MainFrame extends JFrame {
 				if (running && timers.size() > 0) {
 					Timer currentTimer = timers.get(0);
 					currentTimer.setTimeSpanSeconds(currentTimer.getTimeSpanSeconds() - 1);
-					updateTimer();
+					if (currentTimer.getTimeSpanSeconds() == -1) {
+						timers.remove(0);
+					} else {
+						updateTimer();
+					}
 				}
 			}
 		}, TimeUnit.SECONDS.toMillis(1), TimeUnit.SECONDS.toMillis(1));
